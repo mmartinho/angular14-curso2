@@ -11,6 +11,8 @@ import { CriarEditarPensamentoComponent } from './componentes/pensamentos/criar-
 import { ListarPensamentoComponent } from './componentes/pensamentos/listar-pensamento/listar-pensamento.component';
 import { PensamentoComponent } from './componentes/pensamentos/pensamento/pensamento.component';
 import { ExcluirPensamentoComponent } from './componentes/pensamentos/excluir-pensamento/excluir-pensamento.component';
+import { BotaoCarregarMaisComponent } from './componentes/pensamentos/listar-pensamento/botao-carregar-mais/botao-carregar-mais.component';
+import { BotaoReiniciarCarregamentoComponent } from './componentes/pensamentos/listar-pensamento/botao-reiniciar-carregamento/botao-reiniciar-carregamento.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ExcluirPensamentoComponent } from './componentes/pensamentos/excluir-pe
     CriarEditarPensamentoComponent,
     ListarPensamentoComponent,
     PensamentoComponent,
-    ExcluirPensamentoComponent
+    ExcluirPensamentoComponent,
+    BotaoCarregarMaisComponent,
+    BotaoReiniciarCarregamentoComponent
   ],
   imports: [
     BrowserModule,

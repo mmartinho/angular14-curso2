@@ -1,0 +1,15 @@
+.reiniciar-carregamento {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.centralizado {
+    display: flex;
+    justify-content: center;
+}
+
+.mensagem-centralizada {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
