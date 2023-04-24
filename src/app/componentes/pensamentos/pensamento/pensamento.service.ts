@@ -21,8 +21,11 @@ export class PensamentoService {
     return this.http.get<Pensamento[]>(this.API, {params, observe: 'body'});
   }
 
-  listarPaginado(pagina:number=1, limite:number=6, consulta:string=''): Observable<PensamentoPaginado> {
-    let params = new HttpParams().set('_page', pagina).set('_limit', limite).set('q', consulta);
+  listarPaginado(pagina:number=1, limite:number=6, qualquertexto:string='', favoritos=false): Observable<PensamentoPaginado> {
+    var params = new HttpParams().set('_page', pagina).set('_limit', limite).set('q', qualquertexto);
+    if(favoritos) {
+      params = params.append('favorito', true);
+    }
     return this.http.get(this.API, {params, observe: 'response'}).pipe(
       map((res)=>{
         const total = Number(res.headers.get('X-Total-Count'));
@@ -38,6 +41,11 @@ export class PensamentoService {
 
   editar(pensamento: Pensamento) : Observable<Pensamento> {
     return this.http.put<Pensamento>(this.API + `/` + pensamento.id, pensamento);
+  }
+
+  mudarFavorito(pensamento: Pensamento): Observable<Pensamento> {
+    pensamento.favorito = !pensamento.favorito;
+    return this.editar(pensamento);
   }
 
   excluir(id: number): Observable<Pensamento> {

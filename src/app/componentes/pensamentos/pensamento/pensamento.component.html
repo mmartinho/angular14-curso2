@@ -3,6 +3,9 @@
     <p class="conteudo">{{ pensamento.conteudo }}</p>
     <p class="outoria"><b>{{ pensamento.autoria }}</b></p>
     <div class="acoes">
+        <button class="botao-favorito" (click)="alternarFavorito()">
+            <img src="../../../../assets/imagens/icone-favorito-{{ iconeFavorito() }}.png" alt="Ícone favorito {{ iconeFavorito() }}">
+        </button>
         <button class="botao-editar" (click)="editar()">
             <img src="/assets/imagens/icone-editar.png" alt="Ícone de editar">
         </button>

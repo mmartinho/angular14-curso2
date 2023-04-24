@@ -10,18 +10,30 @@ import { PensamentoPaginado } from '../pensamento/pensamento-paginado.interface'
 })
 export class ListarPensamentoComponent implements OnInit {
 
+  titulo: string = 'Meu Mural';
   paginado : PensamentoPaginado = {linhas: [], total: 0};
   pagina: number = 1;
   limite: number = 6;
   haMaisPensamentos: boolean = true;
   filtro: string = '';
+  favoritos: boolean = false;
 
   constructor(private service: PensamentoService) { }
 
-  private carregarLista() {
-    this.service.listarPaginado(this.pagina, this.limite, this.filtro).subscribe((paginado) => {
+  carregarLista() {
+    this.service.listarPaginado(this.pagina, this.limite, this.filtro, this.favoritos).subscribe((paginado) => {
       this.paginado = paginado;
       this.haMaisPensamentos = paginado.linhas.length > 0;
+      this.titulo = 
+        this.filtro && !this.favoritos 
+        ? 'Meu Mural - Filtrado' 
+        : ( this.favoritos && !this.filtro 
+            ? 'Só Favoritos' 
+            : ( this.favoritos && this.filtro 
+                ? 'Só Favoritos e Filtrado' 
+                : 'Meu Mural'
+              )
+          );
     });
   }
 
@@ -41,5 +53,10 @@ export class ListarPensamentoComponent implements OnInit {
 
   pesquisarPensamentos() {
     this.reiniciarMaisPensamentos();
+  }
+
+  alternaFavoritos() {
+    this.favoritos = !this.favoritos;
+    this.carregarLista();
   }
 }

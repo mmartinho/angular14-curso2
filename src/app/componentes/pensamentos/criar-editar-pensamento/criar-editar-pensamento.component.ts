@@ -36,7 +36,8 @@ export class CriarEditarPensamentoComponent implements OnInit {
         Validators.minLength(3),
         CustomValidator.somenteMinusculas()
       ])],
-      modelo: ['modelo1']
+      modelo: ['modelo1'],
+      favorito: [false]
     });
   }
 
